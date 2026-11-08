@@ -26,13 +26,26 @@ function App() {
     setTodoList(updatedTodos);
   }
 
+  function updateTodo(editedTodo){
+    const updatedTodos = todoList.map((todo) => {
+      if (todo.id === editedTodo.id) {
+        return {...editedTodo};
+      } else {
+        return todo;
+      }
+    });
+    setTodoList(updatedTodos);
+  }
+
   return (
     <div>
       <h1>TaskFlow</h1>
       <TodoForm onAddTodo={addTodo}/>
       <TodoList 
         todoList={todoList} 
-        onCompleteTodo={completeTodo} />
+        onCompleteTodo={completeTodo}
+        onUpdateTodo={updateTodo}
+      />
     </div>
   );
 }
